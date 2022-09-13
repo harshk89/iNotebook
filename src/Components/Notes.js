@@ -20,7 +20,7 @@ const Notes = (props) => {
 
   const refEditNote = useRef(null);
   const refClose = useRef(null);
-  const refDisplayNote = useRef(null);
+  // const refDisplayNote = useRef(null);
   const [note, setNote] = useState({id: "", etitle: "", edescription: "", etag: "default"});
 
   const updateNote = (currentNote) => {
@@ -38,10 +38,6 @@ const Notes = (props) => {
   const onChange = (e) => {
     setNote({...note, [e.target.name]: e.target.value});
   };
-
-  
-
-  
 
   return (
     <div className="Notes">
@@ -100,7 +96,7 @@ const Notes = (props) => {
           {notes.length===0 && "No notes to display"}
         </div>
         {notes.map((note) => {
-          return <Noteitem key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert} />;
+          return <Noteitem key={note._id} note={note} setNote={setNote} updateNote={updateNote} showAlert={props.showAlert} />;
         })}
       </div>
     </div>

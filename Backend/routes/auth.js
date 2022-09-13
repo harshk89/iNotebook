@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken');
 var fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = 'Harshisagoodb$oy';
+// const JWT_SECRET = process.env.REACT_APP_SECRET_KEY
 
 // ROUTE 1: Create a user using: POST "/api/auth/createuser". Doesn't require Auth
 router.post('/createuser', [

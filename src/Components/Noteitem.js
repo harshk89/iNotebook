@@ -5,7 +5,7 @@ import "./Noteitem.css";
 const NoteItem = (props) => {
   const context = useContext(noteContext);
   const { deleteNote } = context;
-  const { note, updateNote, showAlert} = props;
+  const { note, setNote, updateNote, showAlert} = props;
   const refClose = useRef(null);
   const refDisplayNote = useRef(null);
 
