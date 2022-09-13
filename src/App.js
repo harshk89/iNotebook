@@ -31,7 +31,7 @@ function App() {
         <Router>
           <Navbar />
           <Alert alert={alert} />
-          <div className="container container_body">
+          <div className="container_body">
             <Switch>
               <Route path="/" element={<Home showAlert={showAlert}/>} />
               <Route path="/about" element={<About />} />

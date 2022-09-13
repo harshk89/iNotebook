@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 function Login(props) {
     const [credentials, setCredentials] = useState({email: "", password: ""});
@@ -18,7 +19,8 @@ function Login(props) {
           console.log(json);
           if(json.success) {
             //save the auth token and redirect
-            localStorage.setItem('token', json.authToken)
+            localStorage.setItem('token', json.authToken);
+            localStorage.setItem('username', json.username);
             navigate("/", { replace: true });
             props.showAlert(`Logged In as ${json.username}`, "success");
           }
@@ -31,28 +33,35 @@ function Login(props) {
     };
 
   return (
-    <div>
-      <h2>Login to continue</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input type="email" className="form-control" value={credentials.email} onChange={onChange} id="email" name="email" aria-describedby="emailHelp" />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
+    <div className="login_page">
+      <div className="login">
+        <div className="login_box">
+          <h2>Sign In</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email address
+              </label>
+              <input type="email" className="form-control" value={credentials.email} onChange={onChange} id="email" name="email" aria-describedby="emailHelp" />
+              <div id="emailHelp" className="form-text">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input type="password" className="form-control" value={credentials.password} onChange={onChange} id="password" name="password"/>
+            </div>
+            <button type="submit" className="submit-btn">
+              Submit
+            </button>
+            <div className="offer_signup">
+              <h4>New to iNotebook? <a className="signup-link" href="/signup">Sign Up</a></h4>
+            </div>
+          </form>
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input type="password" className="form-control" value={credentials.password} onChange={onChange} id="password" name="password"/>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
