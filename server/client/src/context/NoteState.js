@@ -2,7 +2,9 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props)=>{
-  const host = "http://localhost:5000";
+  const port = process.env.PORT || 5000;
+  // const host = `http://localhost:${port}`;
+    const host = `https://harsh-inotebook-app.herokuapp.com:${port}`;
     const notesInitial = []
       const [notes, setNotes] = useState(notesInitial)
 
