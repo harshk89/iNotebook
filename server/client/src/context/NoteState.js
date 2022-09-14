@@ -2,31 +2,34 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props)=>{
-  const port = process.env.PORT || 5000;
+  // const port = process.env.PORT || 5000;
   // const host = `http://localhost:${port}`;
-    const host = `https://harsh-inotebook-app.herokuapp.com:${port}`;
+    // const host = `https://harsh-inotebook-app.herokuapp.com:${port}`;
     const notesInitial = []
       const [notes, setNotes] = useState(notesInitial)
 
       //Fetch all notes
       const getNotes = async ()=> {
-
-        const response = await fetch(`${host}/api/notes/fetchallnotes`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            "auth-token": localStorage.getItem('token')
-          }
-        });
-        const json = await response.json()
-        // console.log(json)
-        setNotes(json)
+        try {
+          const response = await fetch('/fetchallnotes', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              "auth-token": localStorage.getItem('token')
+            }
+          });
+          const json = await response.json()
+          // console.log(json)
+          setNotes(json)
+        } catch (err) {
+          console.log(err);
+        }
       }
 
       //Add a note
       const addNote = async (title, description, tag)=> {
 
-        const response = await fetch(`${host}/api/notes/addnote`, {
+        const response = await fetch('/addnote', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -41,7 +44,7 @@ const NoteState = (props)=>{
       //Delete a note
       const deleteNote = async (id)=> {
         // API call
-        const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+        const response = await fetch(`/deletenote/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -58,7 +61,7 @@ const NoteState = (props)=>{
       //Edit a note
       const editNote = async (id, title, description, tag)=> {
         //API call
-        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+        const response = await fetch(`/updatenote/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

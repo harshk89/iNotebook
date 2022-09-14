@@ -88,8 +88,6 @@ const Notes = (props) => {
         </div>
       </div>
       
-      
-
       <div className="row notes-display">
         <h2 className="section-heading">Your notes</h2>
         <div className="no-notes-message">
