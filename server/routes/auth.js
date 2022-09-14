@@ -10,7 +10,7 @@ const JWT_SECRET = 'Harshisagoodb$oy';
 // const JWT_SECRET = process.env.REACT_APP_SECRET_KEY
 
 // ROUTE 1: Create a user using: POST "/api/auth/createuser". Doesn't require Auth
-router.post('/createuser', [
+router.post('/routes/auth/createuser', [
     body('name', "Name must be atleast 3 characters").isLength({min: 3}),
     body('email', "Enter a valid email").isEmail(),
     body('password', "Password must be atleast 5 characters").isLength({min: 5})
@@ -69,7 +69,7 @@ router.post('/createuser', [
 
 
 //ROUTE 2: Authenticate a user using: POST '/api/auth/login
-router.post('/login', [
+router.post('/routes/auth/login', [
     body('email', "Enter a valid email").isEmail(),
     body('password', "Password can not be blank").exists()
 ], async(req, res)=> {
@@ -109,7 +109,7 @@ router.post('/login', [
 
 
 //ROUTE 3: Get logged in: POST '/api/auth/getuser'.  Login required
-router.post('/getuser', fetchuser, async(req, res)=> {
+router.post('/routes/auth/getuser', fetchuser, async(req, res)=> {
     try {
         userId = req.user.id;
         const user = await User.findById(userId).select("-password")

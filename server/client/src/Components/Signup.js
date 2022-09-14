@@ -9,7 +9,7 @@ function Signup(props) {
   const handleSubmit = async (e)=> {
     e.preventDefault();
     const {name, email, password} = credentials;
-    const response = await fetch('/createuser', {
+    const response = await fetch('/routes/auth/createuser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ function Signup(props) {
               Create Account
             </button>
             <div className="offer_signin">
-              <h4>Already have an account? <a className="signin-link" href="/login">Sign In</a></h4>
+              <h4>Already have an account? <Link className="signin-link" to="/login">Sign In</Link></h4>
             </div>
           </form>
         </div>

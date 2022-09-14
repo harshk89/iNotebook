@@ -8,7 +8,7 @@ function Login(props) {
 
     const handleSubmit = async (e)=> {
         e.preventDefault();
-        const response = await fetch('/login', {
+        const response = await fetch('/routes/auth/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ function Login(props) {
               Submit
             </button>
             <div className="offer_signup">
-              <h4>New to iNotebook? <a className="signup-link" href="/signup">Sign Up</a></h4>
+              <h4>New to iNotebook? <Link className="signup-link" to="/signup">Sign Up</Link></h4>
             </div>
           </form>
         </div>
